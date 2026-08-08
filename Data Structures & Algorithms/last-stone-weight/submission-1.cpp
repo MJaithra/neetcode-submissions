@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        priority_queue<int> maxHp;
+        for(auto x :  stones)
+        {
+            maxHp.push(x);
+        }
+
+        while(maxHp.size() > 1)
+        {
+            int x = maxHp.top();maxHp.pop();
+            int y = maxHp.top();maxHp.pop();
+
+            if(x-y > 0)
+                maxHp.push(x-y);
+        }
+
+        return maxHp.size() == 1? maxHp.top() : 0;
+    }
+};
